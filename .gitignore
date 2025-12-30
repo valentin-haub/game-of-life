@@ -1,0 +1,16 @@
+# Maven Build-Artefakte
+target/
+
+# IDE-spezifische Dateien (VS Code, IntelliJ)
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# macOS System-Dateien
+.DS_Store
+
+# Log-Dateien
+*.log
