@@ -4,7 +4,7 @@ package io.github.valentinhaub;
 import processing.core.PApplet;
 
 public class GameOfLifeApp extends PApplet{
-    int size = 10;
+    int gridSize = Integer.getInteger("gridSize", 50);
     int tickRate = 5;
     Game game;
     int cellSize;
@@ -19,25 +19,27 @@ public class GameOfLifeApp extends PApplet{
 
     public void setup(){
         frameRate(60);
-        game = new Game(size, size);
-        cellSize = (10*height/12) / size;
-        boardSize = cellSize * size;
+        game = new Game(gridSize, gridSize);
+        cellSize = (10*height/12) / gridSize;
+        boardSize = cellSize * gridSize;
         buttonSize = height/30;
+
+        System.out.println("Spiel gestartet. Spielfeldgröße: " + gridSize + "x" + gridSize);
     }
 
 
     void drawBoard(){
-        strokeWeight(8 - size / 20);
+        strokeWeight(8 - gridSize / 20f);
         stroke(25);
         rect(width/12, height/12, boardSize, boardSize);
     }
 
     void drawWorld(){
-        strokeWeight(cellSize / 100);
+        strokeWeight(cellSize / 100f);
         stroke(25);
         for (int i = 0; i < game.world.length; i++){
-            int row = i / size;
-            int col = i % size;
+            int row = i / gridSize;
+            int col = i % gridSize;
             int cellColor = (game.world[i] == 1) ? color(0,0,255) : color(255);
             fill(cellColor);
             rect(width/12 + col * cellSize, height/12 + row * cellSize, cellSize, cellSize);
@@ -105,8 +107,10 @@ public class GameOfLifeApp extends PApplet{
         && mouseY > height/12 && mouseY < height/12 + boardSize){
             int row = (mouseY - height/12) / cellSize;
             int col = (mouseX - width/12) / cellSize;
-            int index = row * size + col; 
-            game.setCell(!game.isCellAlive(index), index);
+            if (row >= 0 && row < gridSize && col >= 0 && col < gridSize) {
+                int index = row * gridSize + col; 
+                game.setCell(!game.isCellAlive(index), index);
+            }
         }
     }
 
@@ -139,7 +143,7 @@ public class GameOfLifeApp extends PApplet{
         if (mouseX > width/12 + boardSize + 2*buttonSize && mouseX < width/12 + boardSize + 2*buttonSize + textWidth("Reset")*1.5f
         && mouseY > boardSize && mouseY < boardSize + height/30){
             isRunning = false;
-            game = new Game(size,size);
+            game = new Game(gridSize, gridSize);
         }
     }
 
@@ -173,6 +177,14 @@ public class GameOfLifeApp extends PApplet{
     }
 
     public static void main(String[] args) {
+        if (args.length > 0){
+            try {
+                int parsedSize = Integer.parseInt(args[0]);
+                System.setProperty("gridSize", String.valueOf(parsedSize));
+            } catch (NumberFormatException e) {
+                System.err.println("Ungültige Größe. Standardgröße wird verwendet.");
+            }
+        }
         PApplet.main(GameOfLifeApp.class);
     }
 }
