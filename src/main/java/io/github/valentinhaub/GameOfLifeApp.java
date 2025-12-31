@@ -180,6 +180,15 @@ public class GameOfLifeApp extends PApplet{
         if (args.length > 0){
             try {
                 int parsedSize = Integer.parseInt(args[0]);
+
+                if (parsedSize < 2){
+                    System.err.println("Wert zu klein. Mindestgröße ist 2.");
+                    parsedSize = 2;
+                } else if (parsedSize > 200){
+                    System.err.println("Wert zu groß. Maximalgröße ist 200.");
+                    parsedSize = 200;
+                }
+
                 System.setProperty("gridSize", String.valueOf(parsedSize));
             } catch (NumberFormatException e) {
                 System.err.println("Ungültige Größe. Standardgröße wird verwendet.");

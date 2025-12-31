@@ -61,7 +61,7 @@ class GameTest {
     void testPreviewMethod(){
         Random rand = new Random();
 
-        game = new Game(rand.nextInt(1,51), rand.nextInt(1,51));
+        game = new Game(rand.nextInt(2,51), rand.nextInt(2,51));
         for (int i = 0; i < game.world.length; i++)
             game.setCell(rand.nextBoolean(), i);
 
@@ -69,7 +69,7 @@ class GameTest {
         int[] startWorld = game.world.clone();
 
         int[] preview = game.preview(steps);
-        assertArrayEquals(startWorld, game.world, "Die Methode preview() sollte die Welt nicht verändern.");
+        assertArrayEquals(startWorld, game.world, "Die Methode 'preview()' sollte die Welt nicht verändern.");
 
         game.doStep(steps);
         assertArrayEquals(preview, game.world, "Die Vorschau stimmt nicht mit den tatsächlichen Schritten überein.");
