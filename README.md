@@ -52,9 +52,8 @@ You can find out more about the mathematical background and history on Wikipedia
 
 1. **Clone the repository:**
     ```bash
-   git clone [https://github.com/valentin-haub/game-of-life.git](https://github.com/valentin-haub/game-of-life.git)
-   cd game-of-life
-   ```
+    git clone https://github.com/valentin-haub/game-of-life.git
+    ```
 2. **Build the project:**
    ```bash
    mvn clean install
