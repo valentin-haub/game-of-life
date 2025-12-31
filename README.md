@@ -31,7 +31,7 @@ You can find out more about the mathematical background and history on Wikipedia
 
 - **Interactive Grid:** Click on cells to toggle them between alive and dead states while the simulation is paused.
 
-- **Configurable Grid Size:** The simulation supports dynamic grid sizes (default: 50x50), which can be adjusted via command-line arguments.
+- **Configurable Grid Size:** The simulation supports dynamic grid sizes (default: 25x25), which can be adjusted via command-line arguments.
 
 - **Dual Output:** In addition to the graphical UI, the game logic includes a text-based visualization (`toString()`) that prints the current grid state to the console. This allows for verifying the game state independent of the graphics engine.
 
@@ -66,13 +66,13 @@ You can find out more about the mathematical background and history on Wikipedia
 
 3. **Run the application:**
    
-   By default, the application starts with a **50x50** grid:
+   By default, the application starts with a **25x25** grid:
    ```bash
    mvn exec:java -Dexec.mainClass="io.github.valentinhaub.GameOfLifeApp"
    ```
    
    To specify a different grid size, use the ```-Dexec.args``` parameter.
-   For example, to launch a **20x20** grid:
+   For example, to launch a **50x50** grid:
    ```bash
-   mvn exec:java -Dexec.mainClass="io.github.valentinhaub.GameOfLifeApp" -Dexec.args="20"
+   mvn exec:java -Dexec.mainClass="io.github.valentinhaub.GameOfLifeApp" -Dexec.args="50"
    ```

@@ -4,7 +4,7 @@ package io.github.valentinhaub;
 import processing.core.PApplet;
 
 public class GameOfLifeApp extends PApplet{
-    int gridSize = Integer.getInteger("gridSize", 50);
+    int gridSize = Integer.getInteger("gridSize", 25);
     int tickRate = 5;
     Game game;
     int cellSize;
@@ -184,14 +184,14 @@ public class GameOfLifeApp extends PApplet{
                 if (parsedSize < 2){
                     System.err.println("Wert zu klein. Mindestgröße ist 2.");
                     parsedSize = 2;
-                } else if (parsedSize > 200){
-                    System.err.println("Wert zu groß. Maximalgröße ist 200.");
-                    parsedSize = 200;
+                } else if (parsedSize > 100){
+                    System.err.println("Wert zu groß. Maximalgröße ist 100.");
+                    parsedSize = 100;
                 }
 
                 System.setProperty("gridSize", String.valueOf(parsedSize));
             } catch (NumberFormatException e) {
-                System.err.println("Ungültige Größe. Standardgröße wird verwendet.");
+                System.err.println("Ungültige Größe. Standardgröße (25x25) wird verwendet.");
             }
         }
         PApplet.main(GameOfLifeApp.class);
