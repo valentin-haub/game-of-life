@@ -25,7 +25,7 @@ You can find out more about the mathematical background and history on Wikipedia
 - **Language:** Java 21
 - **Graphics:** Processing 4.5.0
 - **Build Tool:** Maven
-- **Testing:** JUnit 5 (ready for unit testing logic)
+- **Testing:** JUnit 5
 
 ## Features
 

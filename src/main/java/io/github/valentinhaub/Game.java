@@ -13,23 +13,27 @@ public class Game {
         this.world = new int[n*m];
     }
 
-    boolean isCellAlive(int cell){
+    boolean isCellAlive(int[] world, int cell){
         return world[cell] == 1;
     }
 
-    int checkBorderX(int cell){ // Rand links/rechts
+    boolean isCellAlive(int cell){
+        return isCellAlive(this.world, cell);
+    }
+
+    private int checkBorderX(int cell){ // Rand links/rechts
         if (cell % this.n == 0) return -1;
         if (cell % this.n == n-1) return 1;
         return 0;
     }
 
-    int checkBorderY(int cell){ // Rand oben/unten
+    private int checkBorderY(int cell){ // Rand oben/unten
         if (cell < this.n) return -1;
         if (cell >= this.n * (m-1)) return 1;
         return 0;
     }
 
-    int countNeighbours(int cell){
+    private int countNeighbours(int[] world, int cell){
         int a = 0;
 
         if (checkBorderX(cell) == -1){ // LINKS
@@ -69,13 +73,13 @@ public class Game {
         int[] tempWorld = new int[world.length];
 
         for (int i = 0; i < world.length; i++){
-            if (!isCellAlive(i)){ // unbelebte Zelle
-                if (countNeighbours(i) == 3){
+            if (!isCellAlive(world, i)){ // unbelebte Zelle
+                if (countNeighbours(world, i) == 3){
                     tempWorld[i] = 1;
                 }
             }
             else { // belebte Zelle
-                if (countNeighbours(i) == 2 || countNeighbours(i) == 3){
+                if (countNeighbours(world, i) == 2 || countNeighbours(world, i) == 3){
                     tempWorld[i] = 1;
                 }
             }
@@ -143,6 +147,3 @@ public class Game {
         return s;
     }
 }
-
-
-//Game a = new Game(10,10);
